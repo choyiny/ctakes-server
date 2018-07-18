@@ -39,3 +39,8 @@ build.log
 
 #SHITTY output not in target directory
 build.log
+.DS_Store
+.env
+apache-ctakes-4.0.0-bin.tar.gz
+ctakes-resources-4.0-bin.zip
+sno_rx_16ab.zip
