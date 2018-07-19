@@ -4,8 +4,10 @@ FROM maven:3.5.4-jdk-8-alpine
 RUN apk update && apk add unzip
 
 ## Download all ctakes files
-ADD apache-ctakes-4.0.0-bin.tar.gz /
-COPY ctakes-resources-4.0-bin.zip /
+ADD http://mirror.csclub.uwaterloo.ca/apache//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-bin.tar.gz /
+ADD https://cytranet.dl.sourceforge.net/project/ctakesresources/ctakes-resources-4.0-bin.zip /
+
+RUN tar -xvzf apache-ctakes-4.0.0-bin.tar.gz
 
 RUN ln -s /apache-ctakes-4.0.0 /apache-ctakes
 
@@ -32,5 +34,3 @@ ARG umls_pw
 RUN mvn package
 
 EXPOSE $port
-
-CMD ["java -Dctakes.umlsuser=$umls_id -Dctakes.umlspw=$umls_pw -Xmx5g -cp target/ctakes-server-0.1.jar:resources/ de.dfki.lt.ctakes.Server $host $port desc/ctakes-clinical-pipeline/desc/analysis_engine/AggregatePlaintextFastUMLSProcessor.xml"]
