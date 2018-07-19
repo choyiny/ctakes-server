@@ -2,5 +2,8 @@ version: '3'
 services:
   ctakes:
     build: .
+    env_file:
+      - .env
     ports:
      - "9999:9999"
+    command: java -Dctakes.umlsuser=${UMLSUSER} -Dctakes.umlspw=${UMLSPW} -Xmx5g -cp target/ctakes-server-0.1.jar:resources/ de.dfki.lt.ctakes.Server 0.0.0.0 9999 desc/ctakes-clinical-pipeline/desc/analysis_engine/AggregatePlaintextFastUMLSProcessor.xml
