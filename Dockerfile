@@ -5,20 +5,21 @@ RUN apk update && apk add unzip
 
 ## Download all ctakes files
 ADD apache-ctakes-4.0.0-bin.tar.gz /
-ADD ctakes-resources-4.0-bin.zip /
-RUN mkdir sno_rx_16ab
-COPY sno_rx_16ab.zip /sno_rx_16ab
-
-RUN unzip sno_rx_16ab/sno_rx_16ab.zip
+COPY ctakes-resources-4.0-bin.zip /
 
 RUN ln -s /apache-ctakes-4.0.0 /apache-ctakes
 
-RUN cp -a /apache-ctakes/resources resources
+RUN unzip ctakes-resources-4.0-bin.zip
+RUN cp -a resources /apache-ctakes/resources
 
-RUN cp -a sno_rx_16ab /apache-ctakes/resources
+COPY sno_rx_16ab /apache-ctakes/resources/org/apache/ctakes/dictionary
+
+RUN rm ctakes-resources-4.0-bin.zip
+RUN rm -rf sno_rx_16ab
 
 WORKDIR /app
-ADD src /app
+RUN mkdir src
+ADD src /app/src
 ADD pom.xml /app
 
 RUN ln -s ../apache-ctakes/resources resources
