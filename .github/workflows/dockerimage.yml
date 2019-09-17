@@ -6,7 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: choyiny/Publish-Docker-Github-Action@master
       with:
         name: choyiny/ctakes-server
         username: ${{ secrets.DOCKER_USERNAME }}
