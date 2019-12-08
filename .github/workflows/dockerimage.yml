@@ -19,7 +19,7 @@ jobs:
       uses: machine-learning-apps/gpr-docker-publish@master
       id: docker
       with:
-        IMAGE_NAME: 'flask-api-starter'
+        IMAGE_NAME: 'ctakes-server'
         TAG: 'latest'
         DOCKERFILE_PATH: 'Dockerfile'
         BUILD_CONTEXT: '.'
